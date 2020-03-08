@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// Package chacha20 implements the ChaCha20 stream cipher.
-package chacha20 // import "gitlab.com/yawning/chacha20.git"
+// Package chacha8 implements the ChaCha8 stream cipher.
+package chacha8 // import "github.com/chocolatkey/chacha8"
 
 import (
 	"crypto/cipher"
@@ -22,9 +22,9 @@ import (
 	"errors"
 	"math"
 
-	"gitlab.com/yawning/chacha20.git/internal/api"
-	"gitlab.com/yawning/chacha20.git/internal/hardware"
-	"gitlab.com/yawning/chacha20.git/internal/ref"
+	"github.com/chocolatkey/chacha8/internal/api"
+	"github.com/chocolatkey/chacha8/internal/hardware"
+	"github.com/chocolatkey/chacha8/internal/ref"
 )
 
 const (
