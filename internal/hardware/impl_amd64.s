@@ -113,7 +113,7 @@ chacha_blocks_avx2_atleast512:
 	MOVQ R14, 48(BP)
 
 	// MOVQ 64(BP), AX
-	MOVQ         $20, AX
+	MOVQ         $8, AX
 	VPBROADCASTD 0(BP), Y0
 	VPBROADCASTD 4+0(BP), Y1
 	VPBROADCASTD 8+0(BP), Y2
@@ -495,7 +495,7 @@ chacha_blocks_avx2_atleast256:
 	MOVQ BX, 48(BP)
 
 	// MOVQ 64(BP), AX
-	MOVQ         $20, AX
+	MOVQ         $8, AX
 	VPBROADCASTD 0(BP), X0
 	VPBROADCASTD 4+0(BP), X1
 	VPBROADCASTD 8+0(BP), X2
@@ -871,7 +871,7 @@ chacha_blocks_avx2_above63:
 	VMOVDQA X11, X3
 
 	// MOVQ 64(BP), AX
-	MOVQ $20, AX
+	MOVQ $8, AX
 
 chacha_blocks_avx2_mainloop3:
 	VPADDD  X0, X1, X0
@@ -1119,7 +1119,7 @@ chacha_blocks_ssse3_atleast256:
 	MOVQ BX, 48(BP)
 
 	// MOVQ 64(BP), AX
-	MOVQ $20, AX
+	MOVQ $8, AX
 	MOVO 128(BP), X0
 	MOVO 144(BP), X1
 	MOVO 160(BP), X2
@@ -1520,7 +1520,7 @@ chacha_blocks_ssse3_above63:
 	MOVO X11, X3
 
 	// MOVQ 64(BP), AX
-	MOVQ $20, AX
+	MOVQ $8, AX
 
 chacha_blocks_ssse3_mainloop2:
 	PADDD  X1, X0

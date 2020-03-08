@@ -23,7 +23,7 @@ import (
 	"github.com/chocolatkey/chacha8/internal/api"
 )
 
-const rounds = 20
+const rounds = 8
 
 // Impl is the reference implementation (exposed for testing).
 var Impl = &implRef{}
