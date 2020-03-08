@@ -1,13 +1,5 @@
-### chacha20 - ChaCha20
+### chacha8 - ChaCha8
 #### Yawning Angel (yawning at schwanenlied dot me)
+#### Henry (chocolatkey@gmail.com)
 
-Yet another Go ChaCha20 implementation.  Everything else I found was slow,
-didn't support all the variants I need to use, or relied on cgo to go fast.
-
-Features:
-
- * 20 round, 256 bit key only.  Everything else is pointless and stupid.
- * IETF 96 bit nonce variant.
- * XChaCha 24 byte nonce variant.
- * SSSE3 and AVX2 support on amd64 targets.
- * Incremental encrypt/decrypt support, unlike golang.org/x/crypto/salsa20.
+For those that dare go low

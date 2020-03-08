@@ -13,20 +13,20 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// Package api provides the ChaCha20 implementation abstract interface.
+// Package api provides the ChaCha8 implementation abstract interface.
 package api
 
 const (
-	// BlockSize is the size of a ChaCha20 block in bytes.
+	// BlockSize is the size of a ChaCha8 block in bytes.
 	BlockSize = 64
 
-	// StateSize is the size of the ChaCha20 state as 32 bit unsigned words.
+	// StateSize is the size of the ChaCha8 state as 32 bit unsigned words.
 	StateSize = 16
 
 	// HashSize is the size of the HChaCha output in bytes.
 	HashSize = 32
 
-	// HNonceSize is the HChaCha20 nonce size in bytes.
+	// HNonceSize is the HChaCha8 nonce size in bytes.
 	HNonceSize = 16
 
 	// Sigma0 is the first word of the ChaCha constant.
@@ -42,17 +42,17 @@ const (
 	Sigma3 = uint32(0x6b206574)
 )
 
-// Implementation is a ChaCha20 implementation
+// Implementation is a ChaCha8 implementation
 type Implementation interface {
 	// Name returns the name of the implementation.
 	Name() string
 
-	// Blocks calculates the ChaCha20 blocks.  If src is not nil, dst will
+	// Blocks calculates the ChaCha8 blocks.  If src is not nil, dst will
 	// be set to the XOR of src with the key stream, otherwise dst will be
 	// set to the key stream.
 	Blocks(x *[StateSize]uint32, dst, src []byte, nrBlocks int)
 
-	// HChaCha calculates the HChaCha20 hash.
+	// HChaCha calculates the HChaCha8 hash.
 	//
 	// Note: `dst` is guaranteed to be HashSize bytes.
 	HChaCha(key, nonce []byte, dst []byte)

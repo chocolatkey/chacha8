@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// Package ref provides the portable ChaCha20 implementation.
+// Package ref provides the portable ChaCha8 implementation.
 package ref
 
 import (

@@ -28,31 +28,31 @@ import (
 )
 
 const (
-	// KeySize is the ChaCha20 key size in bytes.
+	// KeySize is the ChaCha8 key size in bytes.
 	KeySize = 32
 
-	// NonceSize is the ChaCha20 nonce size in bytes.
+	// NonceSize is the ChaCha8 nonce size in bytes.
 	NonceSize = 8
 
-	// INonceSize is the IETF ChaCha20 nonce size in bytes.
+	// INonceSize is the IETF ChaCha8 nonce size in bytes.
 	INonceSize = 12
 
-	// XNonceSize is the XChaCha20 nonce size in bytes.
+	// XNonceSize is the XChaCha8 nonce size in bytes.
 	XNonceSize = 24
 
-	// HNonceSize is the HChaCha20 nonce size in bytes.
+	// HNonceSize is the HChaCha8 nonce size in bytes.
 	HNonceSize = 16
 )
 
 var (
 	// ErrInvalidKey is the error returned when the key is invalid.
-	ErrInvalidKey = errors.New("chacha20: key length must be KeySize bytes")
+	ErrInvalidKey = errors.New("chacha8: key length must be KeySize bytes")
 
 	// ErrInvalidNonce is the error returned when the nonce is invalid.
-	ErrInvalidNonce = errors.New("chacha20: nonce length must be NonceSize/INonceSize/XNonceSize bytes")
+	ErrInvalidNonce = errors.New("chacha8: nonce length must be NonceSize/INonceSize/XNonceSize bytes")
 
 	// ErrInvalidCounter is the error returned when the counter is invalid.
-	ErrInvalidCounter = errors.New("chacha20: block counter is invalid (out of range)")
+	ErrInvalidCounter = errors.New("chacha8: block counter is invalid (out of range)")
 
 	supportedImpls []api.Implementation
 	activeImpl     api.Implementation
@@ -60,7 +60,7 @@ var (
 	_ cipher.Stream = (*Cipher)(nil)
 )
 
-// Cipher is an instance of ChaCha20/XChaCha20 using a particular key and nonce.
+// Cipher is an instance of ChaCha8/XChaCha8 using a particular key and nonce.
 type Cipher struct {
 	state [api.StateSize]uint32
 	buf   [api.BlockSize]byte
@@ -95,7 +95,7 @@ func (c *Cipher) Seek(blockCounter uint64) error {
 	return nil
 }
 
-// ReKey reinitializes the ChaCha20/XChaCha20 instance with the provided key
+// ReKey reinitializes the ChaCha8/XChaCha8 instance with the provided key
 // and nonce.
 func (c *Cipher) ReKey(key, nonce []byte) error {
 	c.Reset()
@@ -158,7 +158,7 @@ func (c *Cipher) doReKey(key, nonce []byte) error {
 	return nil
 }
 
-// New returns a new ChaCha20/XChaCha20 instance.
+// New returns a new ChaCha8/XChaCha8 instance.
 func New(key, nonce []byte) (*Cipher, error) {
 	var c Cipher
 	if err := c.doReKey(key, nonce); err != nil {
@@ -168,7 +168,7 @@ func New(key, nonce []byte) (*Cipher, error) {
 	return &c, nil
 }
 
-// HChaCha is the HChaCha20 hash function used to make XChaCha.
+// HChaCha is the HChaCha8 hash function used to make XChaCha.
 func HChaCha(key, nonce []byte, dst *[32]byte) {
 	activeImpl.HChaCha(key, nonce, dst[:])
 }
@@ -276,7 +276,7 @@ func (c *Cipher) doBlocks(dst, src []byte, nrBlocks int) {
 	if c.ietf {
 		ctr := uint64(c.state[12])
 		if ctr+uint64(nrBlocks) > math.MaxUint32 {
-			panic("chacha20: will exceed key stream per nonce limit")
+			panic("chacha8: will exceed key stream per nonce limit")
 		}
 	}
 

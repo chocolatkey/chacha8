@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// Package hardware provides the hardware accelerated ChaCha20 implementations.
+// Package hardware provides the hardware accelerated ChaCha8 implementations.
 package hardware
 
 import "github.com/chocolatkey/chacha8/internal/api"
